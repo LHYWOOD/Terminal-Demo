@@ -1,4 +1,4 @@
-# How do the demo:
+# How to run the demo:
 To run it on Xampp, please put these files to "C:\xampp\htdocs" <br>
 
 # Get terminal's IP:

@@ -1,6 +1,7 @@
 To run it on Xampp, please put these files to "C:\xampp\htdocs"
 
 # Get terminal's IP:
+Please make sure that your computer and terminal are in the same network.
 
 #### 1.
 ![IMG_3313](https://user-images.githubusercontent.com/58466073/174935867-53f583d4-9c5a-4766-b0b7-8d55635dba55.jpg)

@@ -1,5 +1,5 @@
 # How to run the demo:
-To run it on Xampp, please put these files to "C:\xampp\htdocs" <br>
+The author ran it on Xampp. To run it, please put these files to "C:\xampp\htdocs" <br>
 
 # Get terminal's IP:
 Please make sure that your computer and terminal are in the same network.

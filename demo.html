@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<script type="text/javascript">
+            function generateMerRef() {
+                var merchantRef = Date.now();
+                myform.Merchant_Ref.value = merchantRef;
+            }
+        </script>
+    </head>
+
+    <body>
+        <!--https://spiral-developers.space/api-messages/-->
+
+        <form name="myform" method="post" action="action.php"  target="result">
+            <lable for="termIp">Terminal's IP: </lable>
+            <input type="text" id="termIp" name="termIp" value="10.17.17.178:8080"><br><br>
+            <label for="Merchant_Ref">Merchant Ref: </label>
+            <input type="text" id="Merchant_Ref" name="Merchant_Ref">
+            <input type="button" class="button" value="Generate" onClick="generateMerRef();" tabindex="2"><br><br>
+            <label for="amt">Amt: </label>
+            <input type="number" step="0.01" id="amt" name="amt"><br><br>            
+            <label for="type">Type: </label>
+            <select id="type" name="type">
+                <option value="VM">Visa/MasterCard</option>
+                <option value="UNIONPAY">UnionPay</option>
+                <option value="FPS">FPS</option>
+                <option value="ALIPAYHK">AlipayHK</option>
+                <option value="ALIPAY">Alipay</option>
+                <option value="OCTOPUS">Octopus</option>
+                <option value="PAYME">Payme</option>
+                <option value="WECHAT">WeChat</option>
+            </select><br><br>
+            <!-- <label for="command">Command: </label>
+            <select id="command" name="command">
+                <option value="SALESESSION">SALESESSION</option>
+                <option value="SALE">SALE</option>
+                <option value="AUTH">AUTH</option>                
+                <option value="AUTHSESSION">AUTHSESSION</option>
+            </select><br><br>
+            <label for="channel">Channel: </label>
+            <select id="channel" name="channel">
+                <option value="ALL">All</option>
+                <option value="WEB">web</option>
+                <option value="APP">App</option>
+                <option value="paymentlink">Payment Link</option>                
+            </select><br><br>
+            <label for="duration">Duration: </label>
+            <input type="text" id="duration" name="duration"><br><br>
+            <label for="goodsname">Goods Name: </label>
+            <input type="text" id="goodsname" name="goodsname"><br><br>
+            <label for="success">Success URL: </label>
+            <input type="text" id="success" name="success"><br><br>
+            <label for="failure">Failure URL: </label>
+            <input type="text" id="failure" name="failure"><br><br>
+            <label for="Webhook">Webhook URL: </label>
+            <input type="text" id="Webhook" name="Webhook"><br><br>
+            <label for="cardtoken">Card Token: </label>
+            <input type="text" id="cardtoken" name="cardtoken"><br><br>
+            <label for="cardtokensource">Card Token Source: </label>
+            <select id="cardtokensource" name="cardtokensource">
+                <option value="spiral">SPIRAL</option>
+                <option value="applePay">Apple Pay</option>
+                <option value="googlePay">Google Pay</option>
+            </select><br><br> -->
+            <input type="submit"value="Make Order"><br>            
+        </form>
+        <!-- <iframe name = "result" height="98%" width="49.5%"></iframe> -->
+	</body>
+</html>

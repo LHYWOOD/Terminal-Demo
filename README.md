@@ -1,3 +1,4 @@
+# How do the demo:
 To run it on Xampp, please put these files to "C:\xampp\htdocs"
 
 # Get terminal's IP:

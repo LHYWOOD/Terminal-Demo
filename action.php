@@ -76,7 +76,7 @@
 				$.each(payload,function(key, value){
 					document.write(key + ': ' + value + '<br>');
 				});
-				document.write("<p>Hash: "+hash+"</p>");
+				document.write("<p>Hash value: "+hash+"</p>");
 				var json = response;
 				var result = jQuery.parseJSON(json);		
 				document.write("<br><hr><h2>Respond array: </h2>");

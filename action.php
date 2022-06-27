@@ -37,13 +37,18 @@
 				case "VOID":					 
 					$trace = $_POST['trace'];	
 					$body = '{\"TYPE\":"'.$TYPE.'",\"CMD\":\"VOID\",\"TRACE\":"'.$trace.'"}';
-					$payload = '{"TYPE":"EDC","CMD":"VOID","TRACE":"'.$trace.'"}';	
+					$payload = '{"TYPE":"'.$TYPE.'","CMD":"VOID","TRACE":"'.$trace.'"}';	
 					break;
 				case "REFUND":
 					$amt = (float) $_POST['amt'];
 					$refnum = $_POST['refnum'];
 					$body = '{\"AMT\":"'.$amt.'",\"REFNUM\":"'.$refnum.'",\"CMD\":\"REFUND\",\"TYPE\":"'.$TYPE.'"}';
-					$payload = '{"AMT":1010.00,"REFNUM":"123456789012","CMD":"REFUND","TYPE":"EDC"}';
+					$payload = '{"AMT":"'.$amt.'","REFNUM":"'.$refnum.'","CMD":"REFUND","TYPE":"'.$TYPE.'"}';
+					break;
+				case "RETRIEVAL":
+					$trace = $_POST['trace'];
+					$body = '{\"TYPE\":"'.$TYPE.'",\"CMD\":\"RETRIEVAL\",\"TRACE\":"'.$trace.'"}';
+					$payload = '{"TYPE":"'.$TYPE.'","CMD":"RETRIEVAL","TRACE":"'.$trace.'"}';	
 					break;
 				case "INSTALMENT":
 					$merchantRef = $_POST['Merchant_Ref'];
@@ -85,7 +90,6 @@
 				var hashr = md5(json);
 				document.write("<br><hr><h2>Respond array: </h2>");
 				$.each(result,function(key, value){
-					// console.log(key + ': ' + value);
 					document.write(key + ': ' + value + '<br>');			
 				});
 				document.write('<p>Hash value: @' + hashr + '</p><br>');

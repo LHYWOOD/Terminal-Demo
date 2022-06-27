@@ -3,6 +3,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.js"></script>
 	</head>
 	<body>
 		<?php
@@ -52,17 +53,18 @@
 					$payload = '{"TENDER":"'.$tender.'","AMT":"'.$amt.'","ECRREF":"'.$merchantRef.'","CMD":"INSTALMENT","TYPE":"'.$TYPE.'"}';
 			}	
 			$hash = md5($payload);
-			echo "<center><h1>Waiting...</h1></center>";
+			echo "<center><p>Waiting...</p></center>";
 		?>
 		<script script type="text/javascript">
 			//function request(){
 			const data = '<?=$body?>';
+			const hash = '<?=$hash?>';
 			var settings = {
 			"url": "http://<?=$termIp?>",
 			"method": "POST",
 			"timeout": 0,
 			"headers": {
-				//"Content-MD5": "",
+				"X-MD5": hash,
 				"Content-Type": "text/plain"
 			},
 			"data": data,
@@ -76,16 +78,19 @@
 				$.each(payload,function(key, value){
 					document.write(key + ': ' + value + '<br>');
 				});
-				document.write("<p>Hash value: "+hash+"</p>");
+				document.write("<p>Hash value: @" + hash + "</p>");
+
 				var json = response;
-				var result = jQuery.parseJSON(json);		
+				var result = jQuery.parseJSON(json);
+				var hashr = md5(json);
 				document.write("<br><hr><h2>Respond array: </h2>");
 				$.each(result,function(key, value){
-					console.log(key + ': ' + value);
+					// console.log(key + ': ' + value);
 					document.write(key + ': ' + value + '<br>');			
 				});
+				document.write('<p>Hash value: @' + hashr + '</p><br>');
 			});
-			//}
+			//} 
 
         </script>		
 	</body>

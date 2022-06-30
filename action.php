@@ -1,31 +1,33 @@
 <html>
 	<head>		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
 		<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.js"></script>
 	</head>
 	<body>
 		<?php
 			$termIp = $_POST['termIp'];
-			$type = $_POST['type'];								
+			$TYPE = $_POST['type'];								
 			$cmd = $_POST['cmd'];
-			switch ($type){
-				case "UNIONPAY":
-				case "VM":
-					$TYPE = "EDC";
-					break;
-				case "PAYME":
-				case "WECHAT":
-				case "ALIPAY":
-				case "ALIPAYHK":
-				case "FPS":
-					$TYPE = "SHOWQR";
-					break;
-				case "OCTOPUS":
-					$TYPE = "OCTOPUS";
-					break;
-			}
+			// switch ($type){
+			// 	case "UNIONPAY":
+			// 	case "VM":
+			// 		$TYPE = "EDC";
+			// 		break;
+			// 	case "PAYME":				
+			// 	case "FPS":
+			// 		$TYPE = "SHOWQR";
+			// 		break;
+			// 	case "WECHAT":
+			// 	case "ALIPAY":
+			// 	case "ALIPAYHK":
+			// 		$TYPE = "EWALLET";
+			// 		break;
+			// 	case "OCTOPUS":
+			// 		$TYPE = "OCTOPUS";
+			// 		break;
+			// }
 
 			switch ($cmd){
 				case "SALE":
@@ -49,6 +51,11 @@
 					$trace = $_POST['trace'];
 					$body = '{\"TYPE\":"'.$TYPE.'",\"CMD\":\"RETRIEVAL\",\"TRACE\":"'.$trace.'"}';
 					$payload = '{"TYPE":"'.$TYPE.'","CMD":"RETRIEVAL","TRACE":"'.$trace.'"}';	
+					break;
+				case "SETTLE":
+					$acqname = $_POST['acqname'];
+					$body = '{\"CMD\":\"SETTLE\",\"ACQNAME\":"'.$acqname.'" ,\"TYPE\":"'.$TYPE.'"}';
+					$payload = '{"CMD":"SETTLE","ACQNAME":"'.$acqname.'" ,"TYPE":"'.$TYPE.'"}';	
 					break;
 				case "INSTALMENT":
 					$merchantRef = $_POST['Merchant_Ref'];

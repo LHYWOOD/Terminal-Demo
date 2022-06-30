@@ -1,0 +1,96 @@
+<html>
+	<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script type="text/javascript">
+            function generateMerRef() {
+                var merchantRef = Date.now();
+                myform.Merchant_Ref.value = merchantRef;
+            }
+        </script>
+        <style>
+            .cmds {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!--https://spiral-developers.space/api-messages/-->
+        <form name="myform" method="post" action="action.php"  target="result">
+            <lable for="termIp">Terminal's IP: </lable>
+            <input type="text" id="termIp" name="termIp" value="10.17.17.178:8080"><br><br>
+            <lable for="cmd">Command: </lable>
+            <select id="cmd" name = "cmd">
+                <option selected disabled hidden>--Choose here--</option>
+                <option value = "SALE">SALE</option>
+                <option value = "VOID">VOID</option>
+                <option value = "REFUND">REFUND</option>
+                <option value = "INSTALMENT">INSTALMENT</option>
+                <option value = "RETRIEVAL">RETRIEVAL</option> 
+                <option value = "SETTLE">SETTLEMENT</option>
+            </select><br><br>
+            <div class="cmds sale instalment">
+                <label for="Merchant_Ref">Merchant Ref: </label>
+                <input type="text" id="Merchant_Ref" name="Merchant_Ref">
+                <input type="button" class="button" value="Generate" onClick="generateMerRef();" tabindex="2"><br><br>
+            </div>
+            <div class="cmds sale refund instalment">
+                <label for="amt">Amt: </label>
+                <input type="number" step="0.01" id="amt" name="amt"><br><br>     
+            </div>
+            <div class="cmds void retrieval">
+                <label for="trace">Trace: </label>
+                <input type="number" step="1" id="trace" name="trace"><br><br>  
+            </div>
+            <div class="cmds refund">
+                <label for="refnum">Reference number: </label>
+                <input type="text" id="refnum" name="refnum"><br><br>
+            </div>
+            <div class="cmds instalment">
+                <label for="tender">Tender: </label>
+                <input type="number" step="1" id="tender" name="tender"><br><br>    
+            </div>
+            <div class="cmds acqname">
+                <label for="acqname">ACQNAME: </label>
+                <select id="acqname" name = "acqname">
+                    <option value = "ALL">ALL</option>
+                    <option value = "HASE VM HOST NO TLS">HASE VM HOST NO TLS</option>
+                    <option value = "UPI QR (EFT_PRO) URL">UNIONPAY</option>
+                    <option value = "OCTOPUS">OCTOPUS</option>
+                </select><br><br>
+            </div>
+            <label for="type">Type: </label>
+            <select id="type" name="type">
+                <option value="EDC">EDC</option>
+                <option value="EWALLET">EWALLET</option>
+                <option value="OCTOPUS">OCTOPUS</option>
+                <option value="SHOWQR">SHOWQR</option>
+                <option selected value="GENERAL">GENERAL</option>
+            </select><br><br>
+            <input type="submit"value="Make Order"><br>
+            <script>
+                jQuery(document).ready(function($){
+                    $('select[name = "cmd"]').change(function () {                            
+                            
+                        // hide all optional elements
+                        $('.cmds').css('display','none');
+                            
+                        var $name = $(this).val();                         
+                        if($name === "SALE") {
+                            $('.sale').css('display','block');
+                        } else if($name == "VOID") {
+                            $('.void').css('display','block');
+                        } else if($name == "REFUND") {
+                            $('.refund').css('display','block');
+                        } else if($name == "INSTALMENT") {
+                            $('.instalment').css('display','block');
+                        } else if ($name == "RETRIEVAL") {
+                            $('.retrieval').css('display','block');
+                        } else if ($name == "SETTLE") {
+                            $('.acqname').css('display', 'block');
+                        }                      
+                    }); 
+                });                
+            </script>
+	</body>
+</html>

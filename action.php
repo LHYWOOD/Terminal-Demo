@@ -9,25 +9,7 @@
 		<?php
 			$termIp = $_POST['termIp'];
 			$TYPE = $_POST['type'];								
-			$cmd = $_POST['cmd'];
-			// switch ($type){
-			// 	case "UNIONPAY":
-			// 	case "VM":
-			// 		$TYPE = "EDC";
-			// 		break;
-			// 	case "PAYME":				
-			// 	case "FPS":
-			// 		$TYPE = "SHOWQR";
-			// 		break;
-			// 	case "WECHAT":
-			// 	case "ALIPAY":
-			// 	case "ALIPAYHK":
-			// 		$TYPE = "EWALLET";
-			// 		break;
-			// 	case "OCTOPUS":
-			// 		$TYPE = "OCTOPUS";
-			// 		break;
-			// }
+			$cmd = $_POST['cmd'];	
 
 			switch ($cmd){
 				case "SALE":

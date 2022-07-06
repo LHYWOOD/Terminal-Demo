@@ -9,14 +9,15 @@
 		<?php
 			$termIp = $_POST['termIp'];
 			$TYPE = $_POST['type'];								
-			$cmd = $_POST['cmd'];	
+			$cmd = $_POST['cmd'];
 
 			switch ($cmd){
 				case "SALE":
 					$merchantRef = $_POST['Merchant_Ref'];					 
 					$amt = (float) $_POST['amt'];
-					$body = '{\"TYPE\":"'.$TYPE.'",\"CMD\":\"SALE\",\"AMT\":"'.$amt.'",\"ECRREF\":"'.$merchantRef.'"}';
-					$payload = '{"TYPE":"'.$TYPE.'","CMD":"SALE","AMT":"'.$amt.'","ECRREF":"'.$merchantRef.'"}';	
+					$tips = (float) $_POST['tips'];
+					$body = '{\"TYPE\":"'.$TYPE.'",\"CMD\":\"SALE\",\"AMT\":"'.$amt.'",\"ECRREF\":"'.$merchantRef.'",\"TIPS\":"'.$tips.'"}';
+					$payload = '{"TYPE":"'.$TYPE.'","CMD":"SALE","AMT":"'.$amt.'","ECRREF":"'.$merchantRef.'","TIPS":"'.$tips.'"}';	
 					break;					
 				case "VOID":					 
 					$trace = $_POST['trace'];	
@@ -65,14 +66,15 @@
 			};
 							
 			$.ajax(settings).done(function (response) {
-				var payload = '<?=$payload?>';
+				var payload1 = '<?=$payload?>';
 				var hash = '<?=$hash?>';
-				var payload = jQuery.parseJSON(payload);
+				var payload = jQuery.parseJSON(payload1);
 				document.write("<h2>Request array: </h2>");
 				$.each(payload,function(key, value){
 					document.write(key + ': ' + value + '<br>');
 				});
-				document.write("<p>Hash value: @" + hash + "</p>");
+				document.write("<p>Hash value: " + hash + "</p>");
+				document.write("<p>Raw message: @" + hash + payload1 + "</p>");
 
 				var json = response;
 				var result = jQuery.parseJSON(json);
@@ -81,7 +83,8 @@
 				$.each(result,function(key, value){
 					document.write(key + ': ' + value + '<br>');			
 				});
-				document.write('<p>Hash value: @' + hashr + '</p><br>');
+				document.write('<p>Hash value: ' + hashr + '</p>');
+				document.write("<p>Raw message: @" + hashr + json + "</p>");
 			});
 			//} 
 
